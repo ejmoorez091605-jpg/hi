@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #ffe6e6; 
+            margin: 0; 
+            transition: background-color 0.5s; /* Smooth transition for photo reveal */
+        }
+        .buttons { 
+            margin-top: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        button { 
+            padding: 15px 30px; 
+            font-size: 18px; 
+            margin: 10px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            width: 80%; 
+            max-width: 200px; 
+        }
+        #yesBtn { background-color: #ff69b4; color: white; }
+        #noBtn { background-color: #ccc; }
+        #replacement { 
+            display: none; 
+            color: red; 
+            font-weight: bold; 
+            margin-top: 20px; 
+        }
+        #photoContainer { 
+            display: none; 
+            margin-top: 30px; 
+        }
+        #photoContainer img { 
+            max-width: 100%; /* Scales to screen width */
+            height: auto; 
+            border: 5px solid #ff69b4; 
+            border-radius: 10px; /* Rounded corners for style */
+        }
+        
+        /* Mobile-specific styles (screens < 768px wide) */
+        @media (max-width: 767px) {
+            body { padding: 10px; }
+            button { 
+                padding: 20px 40px; 
+                font-size: 20px; 
+                width: 90%; 
+            }
+            h1 { font-size: 24px; }
+            .buttons { margin-top: 15px; }
+            #photoContainer img { border-width: 3px; } /* Thinner border on mobile */
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? 💖</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+    <div id="replacement">
+        <p>Are you sure? Think again! 😏</p>
+        <button onclick="replaceYes()">Still No?</button>
+    </div>
+    <div id="photoContainer">
+        <h2>Yay! You're My Valentine! 🎉</h2>
+        <img src="portia.jfif" alt="Valentine Photo" />
+        <p>Here's a photo to celebrate! ❤️</p>
+    </div>
+
+    <script>
+        function replaceYes() {
+            document.getElementById('yesBtn').style.display = 'none';
+            document.getElementById('replacement').style.display = 'block';
+        }
+
+        function showPhoto() {
+            // Hide buttons and replacement
+            document.querySelector('.buttons').style.display = 'none';
+            document.getElementById('replacement').style.display = 'none';
+            // Show the photo
+            document.getElementById('photoContainer').style.display = 'block';
+            // Optional: Change background for celebration
+            document.body.style.backgroundColor = '#ffb6c1';
+        }
+
+        // Add event listeners for better mobile support
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('yesBtn').addEventListener('click', showPhoto);
+            document.getElementById('yesBtn').addEventListener('touchstart', showPhoto);  // For touch devices
+            document.getElementById('noBtn').addEventListener('click', replaceYes);
+            document.getElementById('noBtn').addEventListener('touchstart', replaceYes);
+        });
+    </script>
+</body>
+</html>
